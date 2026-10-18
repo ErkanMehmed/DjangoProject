@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ manufacturer.name }} | AutoMarket{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'common:home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'manufacturers-list' %}">Manufacturers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ manufacturer.name }}</li>
+    </ol>
+</nav>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm overflow-hidden detail-logo">
+            {% include 'partials/_manufacturer_logo.html' %}
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+                    <div>
+                        <h1 class="h2 mb-1">{{ manufacturer.name }}</h1>
+                        <span class="badge text-bg-secondary">{{ manufacturer.country }}</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'manufacturers-update' manufacturer.pk %}" class="btn btn-outline-primary">Edit</a>
+                        <a href="{% url 'manufacturers-delete' manufacturer.pk %}" class="btn btn-outline-danger">Delete</a>
+                    </div>
+                </div>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Country</dt>
+                    <dd class="col-sm-8">{{ manufacturer.country }}</dd>
+
+                    <dt class="col-sm-4">Founded</dt>
+                    <dd class="col-sm-8">{{ manufacturer.founded_year }}</dd>
+
+                    <dt class="col-sm-4">Added on</dt>
+                    <dd class="col-sm-8">{{ manufacturer.created_at|date:"d M Y" }}</dd>
+
+                    <dt class="col-sm-4">Last updated</dt>
+                    <dd class="col-sm-8">{{ manufacturer.updated_at|date:"d M Y, H:i" }}</dd>
+                </dl>
+
+                <hr>
+
+                <h2 class="h5">About</h2>
+                {% if manufacturer.description %}
+                    {{ manufacturer.description|linebreaks }}
+                {% else %}
+                    <p class="text-muted">No description yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{% url 'manufacturers-list' %}" class="btn btn-link mt-3 px-0">&larr; Back to all manufacturers</a>
+    </div>
+</div>
+{% endblock %}

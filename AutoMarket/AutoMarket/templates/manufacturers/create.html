@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Add manufacturer | AutoMarket{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-1">Add a manufacturer</h1>
+                <p class="text-muted mb-4">Fields marked with * are required.</p>
+
+                {% url 'manufacturers-list' as cancel_url %}
+                {% include 'partials/_form.html' with submit_label='Create manufacturer' cancel_url=cancel_url %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

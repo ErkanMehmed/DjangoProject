@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete {{ manufacturer.name }} | AutoMarket{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white fw-semibold">Delete manufacturer</div>
+            <div class="card-body p-4">
+                <p class="mb-2">
+                    Are you sure you want to delete <strong>{{ manufacturer.name }}</strong>
+                    ({{ manufacturer.country }})?
+                </p>
+                <p class="text-muted mb-4">This action cannot be undone.</p>
+
+                <form method="post" class="d-flex gap-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Yes, delete</button>
+                    <a href="{% url 'manufacturers-detail' manufacturer.pk %}" class="btn btn-outline-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

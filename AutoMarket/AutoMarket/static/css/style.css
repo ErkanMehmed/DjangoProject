@@ -1,0 +1,74 @@
+
+.manufacturer-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+    overflow: hidden;
+}
+.manufacturer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .12) !important;
+}
+
+.logo-img {
+    display: block;
+    width: 100%;
+    height: 140px;
+    object-fit: contain;
+    padding: 1rem;
+    background: #f8f9fa;
+}
+.logo-placeholder {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #212529, #495057);
+}
+.detail-logo .logo-img,
+.detail-logo .logo-placeholder {
+    height: 220px;
+}
+
+
+.app-form input[type="text"],
+.app-form input[type="url"],
+.app-form input[type="number"],
+.app-form textarea {
+    display: block;
+    width: 100%;
+    padding: .55rem .85rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .5rem;
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+.app-form input:focus,
+.app-form textarea:focus {
+    outline: 0;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .2);
+}
+.app-form input:disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+.app-form .has-error input,
+.app-form .has-error textarea {
+    border-color: #dc3545;
+}
+.field-error {
+    color: #dc3545;
+    font-size: .875rem;
+    margin-top: .25rem;
+}
+
+
+.empty-state {
+    border: 2px dashed #ced4da;
+    border-radius: 1rem;
+    background: #fff;
+}

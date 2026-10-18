@@ -1,0 +1,5 @@
+{% if manufacturer.logo_url %}
+    <img src="{{ manufacturer.logo_url }}" alt="{{ manufacturer.name }} logo" class="logo-img">
+{% else %}
+    <div class="logo-placeholder">{{ manufacturer.name|slice:":1"|upper }}</div>
+{% endif %}

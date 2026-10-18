@@ -1,0 +1,15 @@
+<div class="card h-100 shadow-sm manufacturer-card">
+    {% include 'partials/_manufacturer_logo.html' %}
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+            <h2 class="h5 card-title mb-0">{{ manufacturer.name }}</h2>
+            <span class="badge text-bg-secondary">{{ manufacturer.country }}</span>
+        </div>
+        <p class="text-muted small mb-2">Founded in {{ manufacturer.founded_year }}</p>
+        <p class="card-text">{{ manufacturer.description|default:"No description yet."|truncatewords:18 }}</p>
+    </div>
+    <div class="card-footer bg-transparent border-0 pb-3 d-flex gap-2">
+        <a href="{% url 'manufacturers-detail' manufacturer.pk %}" class="btn btn-sm btn-primary flex-fill">View details</a>
+        <a href="{% url 'manufacturers-update' manufacturer.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+    </div>
+</div>
