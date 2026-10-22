@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -41,7 +43,11 @@ class ManufacturerDeleteView(DeleteView):
     success_url = reverse_lazy('manufacturers-list')
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, 'Manufacturer deleted successfully')
+        try:
+            response = super().form_valid(form)
+        except ProtectedError:
+            messages.error(self.request, f'{self.object.name}: this manufacturer still has vehicles')
+            return redirect('manufacturers-detail', pk=self.object.pk)
+        messages.success(self.request, 'Successfully deleted manufacturer')
         return response
 

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Add vehicle | AutoMarket{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-1">Add a vehicle</h1>
+                <p class="text-muted mb-4">Fields marked with * are required.</p>
+
+                {% url 'vehicle-list' as cancel_url %}
+                {% include 'partials/_form.html' with submit_label='Create vehicle' cancel_url=cancel_url %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

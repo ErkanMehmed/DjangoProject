@@ -72,3 +72,110 @@
     border-radius: 1rem;
     background: #fff;
 }
+
+.vehicle-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+    overflow: hidden;
+}
+.vehicle-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .12) !important;
+}
+.vehicle-img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background: #e9ecef;
+}
+.vehicle-placeholder {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, #212529, #495057);
+}
+.detail-vehicle .vehicle-img,
+.detail-vehicle .vehicle-placeholder {
+    height: 320px;
+}
+.vehicle-price {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+.app-form select {
+    display: block;
+    width: 100%;
+    padding: .55rem .85rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .5rem;
+    background: #fff;
+}
+.app-form select:focus {
+    outline: 0;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .2);
+}
+.app-form select:disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+.app-form .has-error select {
+    border-color: #dc3545;
+}
+.app-form input[type="checkbox"] {
+    margin-right: .4rem;
+}
+.app-form #id_features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: .25rem .75rem;
+    padding: .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .5rem;
+    background: #fff;
+}
+
+.hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
+    color: #fff;
+    border-radius: 1.25rem;
+    padding: 4rem 2rem;
+}
+.hero p.lead {
+    color: rgba(255, 255, 255, .8);
+}
+.stat-card {
+    border: 0;
+    border-radius: 1rem;
+    text-align: center;
+}
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #0d6efd;
+}
+.step-circle {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: #0d6efd;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+.cta-banner {
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    color: #fff;
+    border-radius: 1.25rem;
+}

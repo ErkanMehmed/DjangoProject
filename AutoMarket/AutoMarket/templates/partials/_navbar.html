@@ -7,10 +7,21 @@
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'common:home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'vehicle-list' %}">Vehicles</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'manufacturers-list' %}">Manufacturers</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'feature-list' %}">Features</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'common:about' %}">About</a></li>
             </ul>
-            <a class="btn btn-outline-light" href="{% url 'manufacturers-create' %}">Add manufacturer</a>
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    + Add
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{% url 'vehicle-create' %}">Vehicle</a></li>
+                    <li><a class="dropdown-item" href="{% url 'manufacturers-create' %}">Manufacturer</a></li>
+                    <li><a class="dropdown-item" href="{% url 'feature-create' %}">Feature</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

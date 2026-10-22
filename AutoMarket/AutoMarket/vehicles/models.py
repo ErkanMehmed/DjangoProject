@@ -52,5 +52,8 @@ class Vehicle(TimeStampedModel):
     condition = models.CharField(max_length=10, choices=CONDITION_CHOICES, default='used')
     doors = models.PositiveSmallIntegerField(default=4, validators=[MinValueValidator(2), MaxValueValidator(6)])
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f'{self.manufacturer} {self.model_name} ({self.year})'

@@ -1,10 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}AutoMarket | Buy and sell vehicles{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero text-center mb-5">
+    <h1 class="display-4 fw-bold mb-3">Find your next vehicle</h1>
+    <p class="lead mb-4">
+        Browse listings from manufacturers around the world, filter by price and fuel type,
+        or add your own vehicle in a minute.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+        <a href="{% url 'vehicle-list' %}" class="btn btn-light btn-lg">Browse vehicles</a>
+        <a href="{% url 'vehicle-create' %}" class="btn btn-outline-light btn-lg">Add a vehicle</a>
+    </div>
+</section>
+
+<!-- Stats -->
+<section class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card stat-card shadow-sm h-100">
+            <div class="card-body py-4">
+                <div class="stat-number">{{ vehicles_count|default:0 }}</div>
+                <p class="text-muted mb-0 mt-2">Vehicle{{ vehicles_count|default:0|pluralize }} listed</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card shadow-sm h-100">
+            <div class="card-body py-4">
+                <div class="stat-number">{{ manufacturers_count|default:0 }}</div>
+                <p class="text-muted mb-0 mt-2">Manufacturer{{ manufacturers_count|default:0|pluralize }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card shadow-sm h-100">
+            <div class="card-body py-4">
+                <div class="stat-number">{{ features_count|default:0 }}</div>
+                <p class="text-muted mb-0 mt-2">Equipment feature{{ features_count|default:0|pluralize }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest vehicles -->
+<section class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h3 mb-0">Latest listings</h2>
+        <a href="{% url 'vehicle-list' %}" class="btn btn-outline-primary btn-sm">View all</a>
+    </div>
+
+    {% if latest_vehicles %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for vehicle in latest_vehicles %}
+                <div class="col">
+                    {% include 'partials/_vehicle_card.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state text-center py-5 px-3">
+            <h3 class="h5">No vehicles yet</h3>
+            <p class="text-muted">The marketplace is waiting for its first listing.</p>
+            <a href="{% url 'vehicle-create' %}" class="btn btn-primary">Add the first vehicle</a>
+        </div>
+    {% endif %}
+</section>
+
+<!-- Manufacturers -->
+<section class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h3 mb-0">Popular manufacturers</h2>
+        <a href="{% url 'manufacturers-list' %}" class="btn btn-outline-primary btn-sm">View all</a>
+    </div>
+
+    {% if featured_manufacturers %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for manufacturer in featured_manufacturers %}
+                <div class="col">
+                    {% include 'partials/_manufacturer_card.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state text-center py-5 px-3">
+            <h3 class="h5">No manufacturers yet</h3>
+            <p class="text-muted">Add a manufacturer first, then you can list its vehicles.</p>
+            <a href="{% url 'manufacturers-create' %}" class="btn btn-primary">Add a manufacturer</a>
+        </div>
+    {% endif %}
+</section>
+
+<!-- How it works -->
+<section class="mb-5">
+    <h2 class="h3 text-center mb-4">How it works</h2>
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="step-circle">1</div>
+            <h3 class="h5">Add a manufacturer</h3>
+            <p class="text-muted">Create the brand once, with its country, founding year and logo.</p>
+        </div>
+        <div class="col-md-4">
+            <div class="step-circle">2</div>
+            <h3 class="h5">List your vehicle</h3>
+            <p class="text-muted">Enter the details, pick the equipment features and set the price.</p>
+        </div>
+        <div class="col-md-4">
+            <div class="step-circle">3</div>
+            <h3 class="h5">Search and compare</h3>
+            <p class="text-muted">Filter by manufacturer and price, and sort the results your way.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="cta-banner text-center p-5">
+    <h2 class="h3 mb-2">Ready to list a vehicle?</h2>
+    <p class="mb-4">It only takes a minute.</p>
+    <a href="{% url 'vehicle-create' %}" class="btn btn-light btn-lg">Get started</a>
+</section>
+
+{% endblock %}

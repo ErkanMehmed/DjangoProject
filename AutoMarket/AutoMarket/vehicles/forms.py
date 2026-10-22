@@ -1,6 +1,6 @@
 from django import forms
 
-from vehicles.models import Vehicle
+from vehicles.models import Vehicle, Feature
 
 from manufacturers.models import Manufacturer
 
@@ -8,9 +8,8 @@ from manufacturers.models import Manufacturer
 class VehicleForm(forms.ModelForm):
     class Meta:
         model = Vehicle
-        fields = ['manufacturer', 'model_name', 'year', 'price']
+        fields = ['manufacturer', 'model_name', 'year', 'price', 'fuel_type', 'transmission', 'features', 'mileage', 'color', 'description', 'image_url', 'horsepower', 'condition', 'doors']
         widgets = {
-            'manufacturer': forms.TextInput(attrs={'placeholder': 'Manufacturer'}),
             'model_name': forms.TextInput(attrs={'placeholder': 'Enter model name'}),
             'year': forms.NumberInput(attrs={'placeholder': 'Enter manufacturing year'}),
             'price': forms.NumberInput(attrs={'placeholder': 'Enter vehicle price'}),
@@ -58,11 +57,29 @@ class VehicleUpdateForm(VehicleForm):
 
 class VehicleFilterForm(forms.Form):
     SORT_CHOICES = [
-        ('year', 'The newest'),
+        ('-year', 'The newest'),
         ('manufacturer', 'Manufacturer A-Z'),
     ]
 
-    q = forms.CharField(required=True, label='Search', widget=forms.TextInput(attrs={'placeholder': 'Search by manufacturer'}))
+    q = forms.CharField(required=False, label='Search', widget=forms.TextInput(attrs={'placeholder': 'Search by manufacturer'}))
     manufacturers = forms.ModelChoiceField(queryset=Manufacturer.objects.all(), required=False, empty_label='Select manufacturer')
     max_price = forms.IntegerField(required=False, min_value=1, label='Max price')
     sort = forms.ChoiceField(required=False, choices=SORT_CHOICES)
+
+class FeatureForm(forms.ModelForm):
+    class Meta:
+        model = Feature
+        fields = ['name']
+        labels = {
+            'name': 'Feature name',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Feature here'}),
+        }
+        error_messages = {
+            'name': {
+                'required': 'Please enter a feature name',
+                'unique': 'This feature already exists',
+                'max_length': 'Feature name must be 50 characters or fewer.',
+            },
+        }

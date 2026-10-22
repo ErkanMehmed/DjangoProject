@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Vehicles | AutoMarket{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Vehicles</h1>
+        <p class="text-muted mb-0">
+            {{ page_obj.paginator.count }} vehicle{{ page_obj.paginator.count|pluralize }} found
+        </p>
+    </div>
+    <a href="{% url 'vehicle-create' %}" class="btn btn-primary">+ Add vehicle</a>
+</div>
+
+<form method="get" class="app-form card card-body shadow-sm mb-4">
+    <div class="row g-3 align-items-end">
+        <div class="col-lg-3 col-md-6">
+            <label for="{{ filter_form.q.id_for_label }}" class="form-label fw-semibold">{{ filter_form.q.label }}</label>
+            {{ filter_form.q }}
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <label for="{{ filter_form.manufacturers.id_for_label }}" class="form-label fw-semibold">Manufacturer</label>
+            {{ filter_form.manufacturers }}
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <label for="{{ filter_form.max_price.id_for_label }}" class="form-label fw-semibold">{{ filter_form.max_price.label }}</label>
+            {{ filter_form.max_price }}
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <label for="{{ filter_form.sort.id_for_label }}" class="form-label fw-semibold">Sort by</label>
+            {{ filter_form.sort }}
+        </div>
+        <div class="col-lg-2 col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary flex-fill">Search</button>
+            <a href="{% url 'vehicle-list' %}" class="btn btn-outline-secondary">Clear</a>
+        </div>
+    </div>
+    {% for field in filter_form %}
+        {% for error in field.errors %}
+            <div class="field-error">{{ error }}</div>
+        {% endfor %}
+    {% endfor %}
+</form>
+
+{% if vehicles %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for vehicle in vehicles %}
+            <div class="col">
+                {% include 'partials/_vehicle_card.html' %}
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'partials/_pagination_filters.html' %}
+{% else %}
+    <div class="empty-state text-center py-5 px-3">
+        {% if request.GET %}
+            <h2 class="h4">No vehicles match your search</h2>
+            <p class="text-muted">Try different filters or clear them.</p>
+            <a href="{% url 'vehicle-list' %}" class="btn btn-outline-primary">Clear filters</a>
+        {% else %}
+            <h2 class="h4">No vehicles yet</h2>
+            <p class="text-muted">Add the first vehicle to the marketplace. You need at least one manufacturer first.</p>
+            <a href="{% url 'vehicle-create' %}" class="btn btn-primary">Add the first vehicle</a>
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock %}

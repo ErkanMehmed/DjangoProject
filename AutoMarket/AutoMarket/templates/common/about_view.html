@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}About | AutoMarket{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'common:home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">About</li>
+    </ol>
+</nav>
+
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+
+        <h1 class="display-6 fw-bold mb-3">About AutoMarket</h1>
+        <p class="lead text-muted mb-5">
+            AutoMarket is a small vehicle marketplace built with Django. It lets you keep a catalog of
+            manufacturers, list vehicles for sale, and search through them.
+        </p>
+
+        <section class="mb-5">
+            <h2 class="h4 mb-3">What you can do</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h6">Manage manufacturers</h3>
+                            <p class="text-muted mb-0">Add, view, edit and delete car brands, with their country, founding year, description and logo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h6">List vehicles</h3>
+                            <p class="text-muted mb-0">Create listings with price, mileage, fuel type, transmission, condition and photos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h6">Pick equipment features</h3>
+                            <p class="text-muted mb-0">Attach any number of features, such as heated seats or parking sensors, to each vehicle.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h6">Search and filter</h3>
+                            <p class="text-muted mb-0">Find vehicles by model name, manufacturer and maximum price, then sort the results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="h4 mb-3">How the data fits together</h2>
+            <ul class="list-group shadow-sm">
+                <li class="list-group-item">
+                    <strong>Manufacturer</strong> &rarr; has many <strong>vehicles</strong>.
+                    A manufacturer that still has vehicles cannot be deleted.
+                </li>
+                <li class="list-group-item">
+                    <strong>Vehicle</strong> &harr; has many <strong>features</strong>,
+                    and a feature can belong to many vehicles.
+                </li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="h4 mb-3">Built with</h2>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge text-bg-dark fs-6 fw-normal">Python</span>
+                <span class="badge text-bg-dark fs-6 fw-normal">Django</span>
+                <span class="badge text-bg-dark fs-6 fw-normal">PostgreSQL</span>
+                <span class="badge text-bg-dark fs-6 fw-normal">Bootstrap 5</span>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="h4 mb-3">Explore the site</h2>
+            <div class="d-flex flex-wrap gap-2">
+                <a href="{% url 'vehicle-list' %}" class="btn btn-primary">Browse vehicles</a>
+                <a href="{% url 'manufacturers-list' %}" class="btn btn-outline-primary">Manufacturers</a>
+                <a href="{% url 'feature-list' %}" class="btn btn-outline-primary">Features</a>
+            </div>
+        </section>
+
+        <p class="text-muted small mb-0">
+            Manufacturer logos belong to their respective owners and are shown for demonstration purposes only.
+        </p>
+    </div>
+</div>
+{% endblock %}
