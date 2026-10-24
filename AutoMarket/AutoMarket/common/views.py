@@ -5,16 +5,21 @@ from django.shortcuts import render
 def home_view(request: HttpRequest) -> HttpResponse:
     Vehicle = apps.get_model('vehicles', 'Vehicle')
     Manufacturer = apps.get_model("manufacturers", "Manufacturer")
+    Feature = apps.get_model("vehicles", "Feature")
 
     latest_vehicles = (Vehicle.objects.select_related('manufacturer').order_by('-created_at')[:6])
+    featured_manufacturers = Manufacturer.objects.all().order_by('-created_at')[:6]
 
     vehicles_count = Vehicle.objects.count()
     manufacturers_count = Manufacturer.objects.count()
+    features_count = Feature.objects.count()
 
     context = {
         'latest_vehicles': latest_vehicles,
         'vehicles_count': vehicles_count,
         'manufacturers_count': manufacturers_count,
+        'featured_manufacturers': featured_manufacturers,
+        'features_count': features_count,
     }
 
     return render(request, 'common/home_view.html', context)

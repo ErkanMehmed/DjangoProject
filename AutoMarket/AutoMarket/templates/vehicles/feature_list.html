@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Features | AutoMarket{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Features</h1>
+        <p class="text-muted mb-0">
+            {{ page_obj.paginator.count }} equipment feature{{ page_obj.paginator.count|pluralize }} available
+            for vehicles
+        </p>
+    </div>
+    <a href="{% url 'feature-create' %}" class="btn btn-primary">+ Add feature</a>
+</div>
+
+{% if features %}
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Feature</th>
+                        <th scope="col" class="text-center">Vehicles</th>
+                        <th scope="col">Added on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feature in features %}
+                        <tr>
+                            <td class="fw-semibold">{{ feature.name }}</td>
+                            <td class="text-center">
+                                <span class="badge text-bg-secondary">{{ feature.vehicles.count }}</span>
+                            </td>
+                            <td class="text-muted">{{ feature.created_at|date:"d M Y" }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% include 'partials/_pagination.html' %}
+{% else %}
+    <div class="empty-state text-center py-5 px-3">
+        <h2 class="h4">No features yet</h2>
+        <p class="text-muted">Features such as "Heated seats" or "Cruise control" can be attached to any vehicle.</p>
+        <a href="{% url 'feature-create' %}" class="btn btn-primary">Add the first feature</a>
+    </div>
+{% endif %}
+{% endblock %}
