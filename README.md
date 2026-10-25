@@ -33,7 +33,7 @@ pip install -r requirements.txt
 CREATE DATABASE auto_market_db;
 ```
 
-By default the project connects as the user `postgres` with the password `admin`. If your PostgreSQL user has a different password, set the `DB_PASSWORD` environment variable before running the project (see the next section).
+By default the project connects as the user `postgres` with the password `admin`. If your PostgreSQL user has a different password, change the PASSWORD before running the project.
 
 **3. Migrate and run**
 
