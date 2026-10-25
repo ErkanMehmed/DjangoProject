@@ -14,7 +14,7 @@ A small vehicle marketplace built with **Django** and **PostgreSQL**. Keep a cat
 
 ## Quick start
 
-You need Python 3.12+, PostgreSQL 14+ and Git. Run the commands from the folder that contains `manage.py`.
+You need Python 3.12+, PostgreSQL 17+ and Git. Run the commands from the folder that contains `manage.py`.
 
 **1. Get the code and create a virtual environment**
 
@@ -42,27 +42,9 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Open http://127.0.0.1:8000/. The database starts empty, and no fixtures or admin account are needed.
-
-## Environment variables
-
-All optional. The defaults below let the project start after the steps above.
-
-| Variable | Default |
-|---|---|
-| `SECRET_KEY` | development key |
-| `DEBUG` | `True` |
-| `DB_NAME` | `auto_market_db` |
-| `DB_USER` | `postgres` |
-| `DB_PASSWORD` | `admin` |
-| `DB_HOST` | `localhost` |
-| `DB_PORT` | `5432` |
-
-Example (PowerShell): `$env:DEBUG = "False"`  |  Example (macOS / Linux): `export DEBUG=False`
+Open http://127.0.0.1:8000/.
 
 ## Try it
-
-The site starts empty, so create things in this order:
 
 1. **+ Add → Manufacturer** (name, country and founding year are required)
 2. **+ Add → Feature** (e.g. "Cruise control")
